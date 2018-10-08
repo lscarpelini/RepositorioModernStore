@@ -45,6 +45,8 @@
     <Compile Include="Commands\Inputs\RegisterCustomerCommad.cs" />
     <Compile Include="Commands\Inputs\RegisterOrderCommad.cs" />
     <Compile Include="Commands\Inputs\RegisterOrderItemCommad.cs" />
+    <Compile Include="Commands\Results\Querys\GetCustomerCommandResult.cs" />
+    <Compile Include="Commands\Results\Querys\GetProductListCommandResult.cs" />
     <Compile Include="Commands\Results\RegisterCustomerCommandResult.cs" />
     <Compile Include="Commands\Results\RegisterOrderCommandResult.cs" />
     <Compile Include="Entities\Customer.cs" />

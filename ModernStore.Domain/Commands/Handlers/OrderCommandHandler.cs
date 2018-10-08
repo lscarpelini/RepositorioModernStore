@@ -26,7 +26,7 @@ namespace ModernStore.Domain.Commands.Handlers
         public ICommandResult Handle(RegisterOrderCommad command)
         {
             //Instancia um novo cliente vindo do repositório
-            var customer = _customerRepository.GetByUserId(command.Customer);
+            var customer = _customerRepository.Get(command.Customer);
             
             //Gera pedido a partir do repositório
             var order = new Order(customer, command.DeliveryFee, command.Discount);

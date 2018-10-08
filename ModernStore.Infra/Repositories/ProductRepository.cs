@@ -3,6 +3,10 @@ using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Infra.Contexts;
 using System.Linq;
+using ModernStore.Domain.Commands.Results.Querys;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -13,6 +17,17 @@ namespace ModernStore.Infra.Repositories
         public ProductRepository(ModernStoreDataContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<GetProductListCommandResult> Get()
+        {
+            ////Metodo para carregar o DTO via Dapper
+            using (var conn = new SqlConnection(@"data source=(localdb)\MSSQLLocalDB;initial catalog=ModernStore;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"))
+            {
+                string query = "SELECT Id, Title, Price, Image FROM Product";
+                conn.Open();
+                return conn.Query<GetProductListCommandResult>(query);
+            }
         }
 
         public Product Get(Guid id)
