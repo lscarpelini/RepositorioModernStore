@@ -11,6 +11,7 @@ namespace ModernStore.Domain.Entities
 {
     public class Order : Entity
     {
+
         public List<OrderItem> _Items;
 
         protected Order() { }
