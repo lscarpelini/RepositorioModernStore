@@ -19,7 +19,7 @@ namespace ModernStore.Domain.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EmailTemplates {
@@ -61,7 +61,7 @@ namespace ModernStore.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h1&gt;Bem Vindo, &lt;strong&gt;{1}&lt;/strong&gt;&lt;/h1&gt;.
+        ///   Looks up a localized string similar to &lt;h1&gt;Bem Vindo, &lt;strong&gt;{0}&lt;/strong&gt;&lt;/h1&gt;.
         /// </summary>
         public static string WelcomeEmailBody {
             get {
@@ -70,7 +70,7 @@ namespace ModernStore.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seja bem Vindo {1}.
+        ///   Looks up a localized string similar to Seja bem Vindo {0}.
         /// </summary>
         public static string WelcomeEmailTitle {
             get {

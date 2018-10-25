@@ -23,8 +23,6 @@ namespace ModernStore.Domain.Entities
                 .AreEquals(x => x.Password, EncryptPassword(confirmaPassword), "As senha são diferentes");
         }
 
-        public Guid Id { get; private set; }
-
         public bool Active { get; private set; }
 
         public string Username { get; private set; }

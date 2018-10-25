@@ -1,29 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModernStore.Domain.Repositories;
 
 namespace ModernStore.Api.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IProductRepository _repository;
+
+        public ProductController(IProductRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         [Route("Products")]
         public IActionResult Get()
         {
-            return Ok($"Listando todos os produtos");
+            return Ok(_repository.Get());
         }
 
-        [HttpGet]
-        [Route("Products/{number}")] // Rota com parametro
-        public IActionResult Get(guid id)
-        {
-            return Ok($"Produto - {id}"); 
-        }
 
-        [HttpPost]
-        [Route("Products")] // Rora com parametro
-        public IActionResult Post()
-        {
-            return Ok($"Criando um novo produto");
-        }
 
 
     }
