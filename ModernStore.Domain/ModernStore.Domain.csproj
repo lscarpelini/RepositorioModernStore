@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Commands\Handlers\CustomerCommadHandler.cs" />
     <Compile Include="Commands\Handlers\OrderCommandHandler.cs" />
+    <Compile Include="Commands\Inputs\AuthenticateUserCommand.cs" />
     <Compile Include="Commands\Inputs\RegisterCustomerCommad.cs" />
     <Compile Include="Commands\Inputs\RegisterOrderCommad.cs" />
     <Compile Include="Commands\Inputs\RegisterOrderItemCommad.cs" />

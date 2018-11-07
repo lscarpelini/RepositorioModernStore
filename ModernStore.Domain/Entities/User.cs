@@ -25,6 +25,15 @@ namespace ModernStore.Domain.Entities
 
         public bool Active { get; private set; }
 
+        public bool Authenticate (string username, string password)
+        {
+            if (Username == username && Password == EncryptPassword(password))
+                return true;
+
+            AddNotification("User", "Usuário ou senha inválidos");
+            return false;
+        }
+
         public string Username { get; private set; }
 
         public string Password { get; private set; }
@@ -35,12 +44,13 @@ namespace ModernStore.Domain.Entities
 
         private string EncryptPassword(string pass)
         {
-            if (!String.IsNullOrEmpty(pass)) return "";
+            try
+            {
+                if (String.IsNullOrEmpty(pass)) return "";
 
-                var password = string.Empty;
-                password = (pass + "|2d331cca-f6c0-40c0-bb43-6e32989c2881");
+                var password = (pass += "|2d331cca-f6c0-40c0-bb43-6e32989c2881");
                 var md5 = System.Security.Cryptography.MD5.Create();
-                var data = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(Password));
+                var data = md5.ComputeHash(Encoding.Default.GetBytes(password));
                 var sbString = new StringBuilder();
                 foreach (var i in data)
                 {
@@ -48,7 +58,14 @@ namespace ModernStore.Domain.Entities
                 }
 
 
-            return sbString.ToString();
+                return sbString.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+
         }
 
 
