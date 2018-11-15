@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ModernStore.Api.Security;
@@ -13,6 +14,7 @@ using ModernStore.Infra.Contexts;
 using ModernStore.Infra.Repositories;
 using ModernStore.Infra.Services;
 using ModernStore.Infra.Transactions;
+using ModernStore.Shared;
 using System;
 using System.Text;
 
@@ -20,12 +22,28 @@ namespace ModernStore.Api
 {
     public class Startup
     {
+        //Variavel para ler arquivo de configuração (appsettings.json)
+        private IConfiguration Configuration { get; set; }
 
+        //Variaveis para geração do token
         private const string ISSUER = "c1f51f42";
         private const string AUDIENCE = "c6bbbb645024";
         private const string SECRET_KEY = "c1f51f42-5727-4d15-b787-c6bbbb645024";
 
-        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY)); 
+        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY));
+
+        public Startup(IHostingEnvironment env)
+        {
+            //Seta o arquivo de configuração 
+            var configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = configurationBuilder.Build();
+
+
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -118,7 +136,10 @@ namespace ModernStore.Api
             });
 
             //Usa o serviço MVC e Define as rotas
-            app.UseMvc(); 
+            app.UseMvc();
+
+            //Passa ConectionString para camada Shared
+            RuntimeSettings.ConnectionString = Configuration.GetConnectionString("CnnStr");
 
         }
     }
