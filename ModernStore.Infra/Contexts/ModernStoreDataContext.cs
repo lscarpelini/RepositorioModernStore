@@ -20,8 +20,6 @@ namespace ModernStore.Infra.Contexts
 
     public class ModernStoreDataContext : DbContext
     {
-
-
         //public ModernStoreDataContext() : base(@"data source=(localdb)\MSSQLLocalDB;initial catalog=ModernStore;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         public ModernStoreDataContext() : base(RuntimeSettings.ConnectionString)
         {

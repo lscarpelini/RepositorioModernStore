@@ -32,9 +32,12 @@ namespace ModernStore.Infra.Repositories
 
         public Product Get(Guid id)
         {
+            //AsNoTracking Não mapeia o produto
+            //Portanto em uma operação de insert ele tenta inserir o produto novamente
+            //Isso gera ERRO
             return _context
                 .Products
-                .AsNoTracking() // Para não fazer o tracking do registro e melhorar a performance
+                //.AsNoTracking() // Para não fazer o tracking do registro e melhorar a performance
                 .FirstOrDefault(x => x.Id == id);
         }
     }

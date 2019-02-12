@@ -37,7 +37,7 @@ namespace ModernStore.Domain.Commands.Handlers
                 var product = _productRepository.Get(item.Product);     //Chave do Produto
                 order.AddItem(new OrderItem(product, item.Quantity));  //Quantidade do Produto
             }
-            
+
             //Se o pedido tiver notificações
             AddNotifications(order.Notifications);
 

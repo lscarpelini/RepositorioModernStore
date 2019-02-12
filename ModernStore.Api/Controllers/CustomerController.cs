@@ -18,7 +18,7 @@ namespace ModernStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/customers")]
-        [AllowAnonymous]
+        [AllowAnonymous] //Chave para usar o token ou Desativar
         public async Task<IActionResult> Post([FromBody]RegisterCustomerCommad command)
         {
             var result = _handler.Handle(command);

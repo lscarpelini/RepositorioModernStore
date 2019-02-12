@@ -15,7 +15,7 @@ namespace ModernStore.Api.Controllers
 
         [HttpGet]
         [Route("v1/products")]
-       // [AllowAnonymous]
+        [AllowAnonymous] //Chave para usar o token ou Desativar
         public IActionResult Get()
         {
             return Ok(_repository.Get());
